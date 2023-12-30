@@ -1,4 +1,7 @@
-const Navbar = () => {
+import { Link } from "@inertiajs/react";
+
+const Navbar = ({user}) => {
+    // console.log('isUser',user)
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -29,18 +32,23 @@ const Navbar = () => {
                         tabIndex="0"
                         className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                     >
+                        {!user ? 
+                        <>
+                        <li><Link href={route('login')} as="button">Login</Link></li>
+                        <li><Link href={route('register')} as="button">Register</Link></li>
+                        </>
+                        :
+                        <>
                         <li>
-                            <a className="justify-between">
+                            <Link href={route('dashboard')} as="button" className="justify-between">
                                 Dashboard
                                 <span className="badge">New</span>
-                            </a>
+                            </Link>
                         </li>
-                        <li>
-                            <a>Settings</a>
-                        </li>
-                        <li>
-                            <a>Logout</a>
-                        </li>
+                        <li><Link>Settings</Link></li>
+                        <li><Link href={route('logout')} method="post" as="button">Logout</Link></li>
+                        </> 
+                        }
                     </ul>
                 </div>
             </div>
