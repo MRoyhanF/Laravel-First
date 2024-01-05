@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import {  Head } from '@inertiajs/react';
+// import { Inertia } from '@inertiajs/inertia';
 import { useState } from 'react';
 
 export default function Dashboard({ auth }) {
@@ -8,8 +9,13 @@ export default function Dashboard({ auth }) {
     const [category,setCategory] = useState('');
 
     const handleSubmit = () => {
-
+        const data = {
+            title, description, category
+        }
+        Inertia.post('/news',data)
     }
+
+    console.log('props last: ',props);
 
     return (
         <AuthenticatedLayout
